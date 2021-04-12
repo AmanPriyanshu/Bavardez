@@ -7,6 +7,7 @@ from intent_initializer import read_all_intents, read_all_responses
 from preprocessing import stem, tokenize, bag_of_words
 
 PATH = './config/'
+BOT_NAME = 'Bavardez'
 
 def load_bot():
 	model_details = torch.load(PATH+'model_details.pt')
@@ -16,6 +17,19 @@ def load_bot():
 
 	tags = model_details['tags']
 	all_words = model_details['all_words']
+
+	return model, tags, all_words
+
+def main():
+	model, tags, all_words = load_bot()
+
+	print("Let's chat! Type \"quit\" to exit.")
+	while True:
+		sentence = input("You:\t")
+		if sentence == "quit":
+			break
+		sentence = tokenize(sentence)
+		bof = bag_of_words(sentence, all_words)
 
 if __name__ == '__main__':
 	load_bot()
