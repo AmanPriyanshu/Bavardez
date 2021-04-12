@@ -19,17 +19,16 @@ def initialize():
 	df.to_csv(PATH+'responses.csv', index=False)
 
 def create_new_intent():
-	df_intents = read_all_intents()
-	df_responses = read_all_responses()
 	intent = input("Enter input Title of Intent:\t")
 	patterns = []
 	flag = True
 	while(flag):
 		pattern = input("Enter pattern examples (enter -1 to stop):\t")
-		if(pattern == '-1'):
+		if(pattern == "-1"):
 			flag = False
 		else:
 			patterns.append(pattern)
+	print("\nNow recording responses...\n")
 	responses = []
 	flag = True
 	while(flag):
@@ -46,6 +45,8 @@ def main():
 		initialize()
 		create_new_intent()
 	elif choice == 1:
+		df_intents = read_all_intents()
+		df_responses = read_all_responses()
 		create_new_intent()
 	elif choice == 2:
 		df_intents = read_all_intents()
