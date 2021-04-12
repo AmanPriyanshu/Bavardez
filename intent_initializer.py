@@ -44,30 +44,34 @@ def create_new_intent():
 	return intent, patterns, responses
 
 def main():
-	choice = int(input("Enter:\n\t0. If you wish to initialize all the intents.\n\t1. If you wish to add another intent.\n\t2. If you wish to edit one of the intents.\nChoice:\t"))
-	if choice == 0:
-		initialize()
-		intent, patterns, responses = create_new_intent()
-		patterns = pd.DataFrame({intent: patterns})
-		responses = pd.DataFrame({intent: responses})
-		patterns.to_csv(PATH+'intents.csv', index=False)
-		responses.to_csv(PATH+'responses.csv', index=False)
-	elif choice == 1:
-		df_intents = read_all_intents()
-		df_responses = read_all_responses()
-		intent, patterns, responses = create_new_intent()
-		df_intents.update({intent: patterns})
-		df_responses.update({intent: responses})
-		df_responses = pd.DataFrame(df_responses)
-		df_intents = pd.DataFrame(df_intents)
-		print(df_intents)
+	while(1):
+		choice = int(input("Enter:\n\t0. If you wish to initialize all the intents.\n\t1. If you wish to add another intent.\n\t2. If you wish to edit one of the intents.\nChoice:\t"))
+		if choice == 0:
+			initialize()
+			intent, patterns, responses = create_new_intent()
+			patterns = pd.DataFrame({intent: patterns})
+			responses = pd.DataFrame({intent: responses})
+			patterns.to_csv(PATH+'intents.csv', index=False)
+			responses.to_csv(PATH+'responses.csv', index=False)
+		elif choice == 1:
+			df_intents = read_all_intents()
+			df_responses = read_all_responses()
+			intent, patterns, responses = create_new_intent()
+			df_intents.update({intent: patterns})
+			df_responses.update({intent: responses})
+			df_responses = pd.DataFrame(dict([ (k,pd.Series(v)) for k,v in df_responses.items() ]))
+			df_intents = pd.DataFrame(dict([ (k,pd.Series(v)) for k,v in df_intents.items() ]))
+			df_intents.to_csv(PATH+'intents.csv', index=False)
+			df_responses.to_csv(PATH+'responses.csv', index=False)
 
-	elif choice == 2:
-		df_intents = read_all_intents()
-		df_responses = read_all_responses()
-		print("KEYS: "+str(list(df_intents.keys())))
-	else:
-		print("Closing MENU")
+		elif choice == 2:
+			df_intents = read_all_intents()
+			df_responses = read_all_responses()
+			print("KEYS: "+str(list(df_intents.keys())))
+		else:
+			print("Closing MENU")
+			break
+		print("\n\n")
 
 if __name__ == '__main__':
 	main()
