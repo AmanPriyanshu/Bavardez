@@ -42,4 +42,5 @@ class ChatDataset(torch.utils.Dataset):
 		return self.n_samples
 
 if __name__ == '__main__':
-	read_everything()
+	dataset = ChatDataset()
+	train_loader = torch.utils.DataLoader(dataset=dataset, batch_size=8, shuffle=True)
