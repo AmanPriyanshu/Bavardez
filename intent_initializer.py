@@ -37,7 +37,12 @@ def create_new_intent():
 			flag = False
 		else:
 			responses.append(response)
-	print(intent, patterns, responses)
+	print("\nCompleted and Saved both Intents and Responses.")
+	
+	patterns = pd.DataFrame({intent: patterns})
+	responses = pd.DataFrame({intent: responses})
+	patterns.to_csv(PATH+'intents.csv', index=False)
+	responses.to_csv(PATH+'responses.csv', index=False)
 
 def main():
 	choice = int(input("Enter:\n\t0. If you wish to initialize all the intents.\n\t1. If you wish to add another intent.\n\t2. If you wish to edit one of the intents.\nChoice:\t"))
