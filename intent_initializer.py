@@ -55,9 +55,13 @@ def main():
 	elif choice == 1:
 		df_intents = read_all_intents()
 		df_responses = read_all_responses()
-		print(df_intents, df_responses)
-		exit()
-		create_new_intent()
+		intent, patterns, responses = create_new_intent()
+		df_intents.update({intent: patterns})
+		df_responses.update({intent: responses})
+		df_responses = pd.DataFrame(df_responses)
+		df_intents = pd.DataFrame(df_intents)
+		print(df_intents)
+
 	elif choice == 2:
 		df_intents = read_all_intents()
 		df_responses = read_all_responses()
