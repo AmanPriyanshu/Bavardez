@@ -6,6 +6,8 @@ import torch
 from model import get_model
 from tqdm import trange
 
+PATH = './config/'
+
 def read_everything():
 	df_responses = read_all_responses()
 	df_patterns = read_all_intents()
@@ -76,6 +78,18 @@ def train_instance(hidden_size=8, lr=0.001, num_epochs=1000):
 		running_loss /= len(train_loader)
 		running_accuracy /= len(train_loader)
 		bar.set_description(str({'epoch':epoch+1, 'loss':round(running_loss, 4), 'acc': round(running_accuracy, 4)}))
+	bar.close()
+
+	model_details = {
+	"model_state": model.state_dict(),
+	"input_size": len(dataset.all_words),
+	"output_size": len(dataset.tags),
+	"hidden_size": hidden_size,
+	"all_words": dataset.all_words,
+	"tags": dataset.tags
+	}
+
+	torch.save(model_details, PATH+'model_details.pt')
 
 if __name__ == '__main__':
 	train_instance()
