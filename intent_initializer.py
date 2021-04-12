@@ -6,11 +6,14 @@ PATH = './config/'
 def read_all_intents():
 	df = pd.read_csv(PATH+'intents.csv')
 	intents = df.to_dict('dict')
+	intents = {key: [i for i in list(value.values())] for key, value in intents.items()}
+	print(type(intents['goodbye'][2]))
 	return intents
 
 def read_all_responses():
 	df = pd.read_csv(PATH+'responses.csv')
 	responses = df.to_dict('dict')
+	responses = {key: [i for i in list(value.values())] for key, value in responses.items()}
 	return responses
 
 def initialize():
@@ -39,19 +42,22 @@ def create_new_intent():
 			responses.append(response)
 	print("\nCompleted and Saved both Intents and Responses.")
 	
-	patterns = pd.DataFrame({intent: patterns})
-	responses = pd.DataFrame({intent: responses})
-	patterns.to_csv(PATH+'intents.csv', index=False)
-	responses.to_csv(PATH+'responses.csv', index=False)
+	return intent, patterns, responses
 
 def main():
 	choice = int(input("Enter:\n\t0. If you wish to initialize all the intents.\n\t1. If you wish to add another intent.\n\t2. If you wish to edit one of the intents.\nChoice:\t"))
 	if choice == 0:
 		initialize()
-		create_new_intent()
+		intent, patterns, responses = create_new_intent()
+		patterns = pd.DataFrame({intent: patterns})
+		responses = pd.DataFrame({intent: responses})
+		patterns.to_csv(PATH+'intents.csv', index=False)
+		responses.to_csv(PATH+'responses.csv', index=False)
 	elif choice == 1:
 		df_intents = read_all_intents()
 		df_responses = read_all_responses()
+		print(df_intents, df_responses)
+		exit()
 		create_new_intent()
 	elif choice == 2:
 		df_intents = read_all_intents()
