@@ -6,14 +6,13 @@ PATH = './config/'
 def read_all_intents():
 	df = pd.read_csv(PATH+'intents.csv')
 	intents = df.to_dict('dict')
-	intents = {key: [i for i in list(value.values())] for key, value in intents.items()}
-	print(type(intents['goodbye'][2]))
+	intents = {key: [i for i in list(value.values()) if str(i)!='nan'] for key, value in intents.items()}
 	return intents
 
 def read_all_responses():
 	df = pd.read_csv(PATH+'responses.csv')
 	responses = df.to_dict('dict')
-	responses = {key: [i for i in list(value.values())] for key, value in responses.items()}
+	responses = {key: [i for i in list(value.values()) if str(i)!='nan'] for key, value in responses.items()}
 	return responses
 
 def initialize():
