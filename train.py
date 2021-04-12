@@ -18,8 +18,9 @@ def read_everything():
 
 	for sentence in all_patterns:
 		all_words.extend(tokenize(sentence))
+	all_words = sorted(set([stem(w) for w in all_words]))
 
-	print(xy)
+	print(all_words)
 
 	exit()
 
