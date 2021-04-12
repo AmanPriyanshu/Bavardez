@@ -4,13 +4,22 @@ Building a chatbot from scratch. The bot uses a Bag Of Word for encoding (no wor
 ![demo](sample_conversation.PNG)
 
 ## Installation:
-Use the following command: `git clone https://github.com/AmanPriyanshu/Bavardez.git`
+Use the following command: 
+```
+git clone https://github.com/AmanPriyanshu/Bavardez.git
+```
 
 ## To Execute Bavardez:
-Use the command: `python bavardez.py`
+Use the command: 
+```
+python bavardez.py
+```
 
 ## To add additional Intents/Responses to the same:
-Use the command: `python intent_initializer.py`
+Use the command: 
+```
+python intent_initializer.py
+```
 The menu for this is self-explanatory allowing most people to use it. 
 ```python
 Enter:
@@ -21,4 +30,7 @@ Choice:
 ```
 
 ## To Re-Train the Model:
-Use the command: `python train.py`
+Use the command: 
+```
+python train.py
+```
