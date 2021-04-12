@@ -34,3 +34,5 @@ Use the command:
 ```
 python train.py
 ```
+## Credits:
+The bot is loosely based of the youtube series [**Chat Bot With PyTorch** by *Python Engineer*](https://www.youtube.com/playlist?list=PLqnslRFeH2UrFW4AUgn-eY37qOAWQpJyg)
