@@ -46,7 +46,7 @@ class ChatDataset(torch.utils.data.Dataset):
 	def __len__(self):
 		return self.n_samples
 
-def train_instance(hidden_size=8, lr=0.001, num_epochs=1000):
+def train_instance(hidden_size=8, lr=0.001, num_epochs=500):
 	dataset = ChatDataset()
 	train_loader = torch.utils.data.DataLoader(dataset=dataset, batch_size=8, shuffle=True)
 	model = get_model(len(dataset.all_words), hidden_size, len(dataset.tags))

@@ -39,7 +39,7 @@ def main():
 		probs = activation(output).flatten()
 		predicted_label = torch.argmax(probs)
 		tag = tags[predicted_label.item()]
-		if probs[predicted_label]>0.1:
+		if probs[predicted_label]>0.5:
 			if tag in list(df_responses.keys()):
 				answer = random.choice(df_responses[tag])
 			else:
