@@ -10,8 +10,16 @@ def read_everything():
 	assert len(list(df_responses.keys())) == len(list(df_patterns.keys())), "Patterns and Responses should have the same Tags"
 
 	intents = list(df_responses.keys())
+	patterns = df_responses.values()
+	responses = df_responses.values()
+	all_patterns = sum(patterns, [])
+	all_words = []
+	xy = sum([[(tag, tokenize(sentence)) for sentence in sentences] for tag, sentences in df_responses.items()], [])
 
-	print(df_patterns.values())
+	for sentence in all_patterns:
+		all_words.extend(tokenize(sentence))
+
+	print(xy)
 
 	exit()
 
