@@ -45,10 +45,6 @@ def create_new_intent():
 	return intent, patterns, responses
 
 def main_intent_initializer():
-	"""
-	MENU Drive Intent Initializer
-	"""
-
 	while(1):
 		choice = int(input("Enter:\n\t0. If you wish to initialize all the intents.\n\t1. If you wish to add another intent.\n\t2. If you wish to edit one of the intents.\nChoice:\t"))
 		if choice == 0:
