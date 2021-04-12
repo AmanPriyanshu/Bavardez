@@ -1,4 +1,7 @@
-goodbye,greeting,thanks
-bye,hello,thankyou
-thanks,hi,thank you
-,how's life?,thanks a lot
+greeting,goodbye,thanks,items,payments,delivery,funny
+Hi,Bye,Thanks,Which items do you have?,Do you take credit cards?,How long does delivery take?,Tell me a joke!
+Hey,See you later,Thank you,What kinds of items are there?,Do you accept Mastercard?,How long does shipping take?,Tell me something funny!
+How are you?,Goodbye,That's helpful,What do you sell?,Can I pay with PayPal?,When do I get my delivery?,Do you know a joke?
+Is anyone there?,,Thank's a lot,,Are you cash only?,,
+Hello,,,,,,
+Good Day,,,,,,
