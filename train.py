@@ -44,7 +44,7 @@ class ChatDataset(torch.utils.data.Dataset):
 	def __len__(self):
 		return self.n_samples
 
-def train_instance(hidden_size=8, lr=0.001, num_epochs=100):
+def train_instance(hidden_size=8, lr=0.001, num_epochs=1000):
 	dataset = ChatDataset()
 	train_loader = torch.utils.data.DataLoader(dataset=dataset, batch_size=8, shuffle=True)
 	model = get_model(len(dataset.all_words), hidden_size, len(dataset.tags))
@@ -56,8 +56,7 @@ def train_instance(hidden_size=8, lr=0.001, num_epochs=100):
 
 	bar = trange(num_epochs)
 	for epoch in bar:
-		running_loss = 0
-		c = 0
+		running_loss, running_accuracy = 0, 0
 		for (words, labels) in train_loader:
 			words = words.to(device)
 			labels = labels.to(device)
@@ -65,15 +64,18 @@ def train_instance(hidden_size=8, lr=0.001, num_epochs=100):
 			outputs = model(words)
 			loss = criterion(outputs, labels)
 
+			predictions = torch.argmax(outputs, 1)
+			accuracy = torch.mean((predictions == labels).float())
+
 			optimizer.zero_grad()
 			loss.backward()
 			optimizer.step()
 			
 			running_loss += loss.item()
-			c+=1
+			running_accuracy += accuracy.item()
 		running_loss /= len(train_loader)
-		
-
+		running_accuracy /= len(train_loader)
+		bar.set_description(str({'epoch':epoch+1, 'loss':round(running_loss, 4), 'acc': round(running_accuracy, 4)}))
 
 if __name__ == '__main__':
 	train_instance()
