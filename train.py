@@ -29,11 +29,11 @@ def read_everything():
 		train_x.append(bof)
 		train_y.append(tags.index(tag))
 	train_x, train_y = np.array(train_x), np.array(train_y)
-	return train_x, train_y
+	return train_x, train_y, tags, all_words
 
-class ChatDataset(torch.utils.Dataset):
+class ChatDataset(torch.utils.data.Dataset):
 	def __init__(self):
-		self.train_x, self.train_y = read_everything()
+		self.train_x, self.train_y, self.tags, self.all_words = read_everything()
 		self.n_samples = len(self.train_x)
 
 	def __getitem__(self, index):
@@ -42,6 +42,11 @@ class ChatDataset(torch.utils.Dataset):
 	def __len__(self):
 		return self.n_samples
 
-if __name__ == '__main__':
+def train_instance(hidden_size=8):
 	dataset = ChatDataset()
-	train_loader = torch.utils.DataLoader(dataset=dataset, batch_size=8, shuffle=True)
+	train_loader = torch.utils.data.DataLoader(dataset=dataset, batch_size=8, shuffle=True)
+	model = get_model(len(dataset.all_words), hidden_size, len(dataset.tags))
+	print(model)
+
+if __name__ == '__main__':
+	train_instance()
