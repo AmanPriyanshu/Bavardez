@@ -91,5 +91,7 @@ def train_instance(hidden_size=8, lr=0.001, num_epochs=1000):
 
 	torch.save(model_details, PATH+'model_details.pt')
 
+	print("Training has been Completed. Model has been saved at \""+PATH+'model_details.pt"')
+
 if __name__ == '__main__':
 	train_instance()
