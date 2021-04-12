@@ -55,4 +55,4 @@ def main():
 		print("Closing MENU")
 
 if __name__ == '__main__':
-	create_new_intent()
+	main()
