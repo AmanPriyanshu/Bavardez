@@ -22,6 +22,8 @@ def load_bot():
 
 def main():
 	model, tags, all_words = load_bot()
+	df_responses = read_all_responses()
+	activation = torch.nn.Softmax(1)
 
 	print("Let's chat! Type \"quit\" to exit.")
 	while True:
@@ -34,10 +36,18 @@ def main():
 		bof = torch.from_numpy(bof)
 
 		output = model(bof)
-		predicted_label = torch.argmax(output)
+		probs = activation(output).flatten()
+		predicted_label = torch.argmax(probs)
 		tag = tags[predicted_label.item()]
-		print(tag)
-		exit()
+		if probs[predicted_label]>0.1:
+			if tag in list(df_responses.keys()):
+				answer = random.choice(df_responses[tag])
+			else:
+				answer = "Sorry there's an error in OUR SYSTEM! Please re-phrase"
+		else:
+			answer = "I do not understand you."
+		print(BOT_NAME+":\t"+answer)
+	print("Thankyou for using "+BOT_NAME)		
 
 if __name__ == '__main__':
 	main()
