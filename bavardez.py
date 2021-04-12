@@ -30,6 +30,14 @@ def main():
 			break
 		sentence = tokenize(sentence)
 		bof = bag_of_words(sentence, all_words)
+		bof = np.expand_dims(bof, axis=0)
+		bof = torch.from_numpy(bof)
+
+		output = model(bof)
+		predicted_label = torch.argmax(output)
+		tag = tags[predicted_label.item()]
+		print(tag)
+		exit()
 
 if __name__ == '__main__':
-	load_bot()
+	main()
