@@ -14,17 +14,16 @@ def read_everything():
 	responses = df_responses.values()
 	all_patterns = sum(patterns, [])
 	all_words = []
-	xy = sum([[(tag, tokenize(sentence)) for sentence in sentences] for tag, sentences in df_responses.items()], [])
+	xy = sum([[(tokenize(sentence), tag) for sentence in sentences] for tag, sentences in df_responses.items()], [])
 
 	for sentence in all_patterns:
 		all_words.extend(tokenize(sentence))
 	all_words = sorted(set([stem(w) for w in all_words]))
+	tags = sorted(tags)
 
-	print(all_words)
-
-	exit()
-
-	all_words = np.unique(np.array([]))
+	train_x, train_y = [], []
+	for (sentence, tag) in xy:
+		bof = bag_of_words()
 
 if __name__ == '__main__':
 	read_everything()
