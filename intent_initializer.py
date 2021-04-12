@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import json
 
 PATH = './config/'
 
@@ -44,6 +45,10 @@ def create_new_intent():
 	return intent, patterns, responses
 
 def main_intent_initializer():
+	"""
+	MENU Drive Intent Initializer
+	"""
+
 	while(1):
 		choice = int(input("Enter:\n\t0. If you wish to initialize all the intents.\n\t1. If you wish to add another intent.\n\t2. If you wish to edit one of the intents.\nChoice:\t"))
 		if choice == 0:
@@ -72,6 +77,15 @@ def main_intent_initializer():
 			print("Closing MENU")
 			break
 		print("\n\n")
+
+def generate_json():
+	"""
+	To be Completed.
+	"""
+	df_intents = read_all_intents()
+	df_responses = read_all_responses()
+	pass
+
 
 if __name__ == '__main__':
 	main_intent_initializer()
