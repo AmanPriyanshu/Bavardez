@@ -3,6 +3,7 @@ import numpy as np
 from intent_initializer import read_all_intents, read_all_responses
 from preprocessing import stem, tokenize, bag_of_words
 import torch
+from model import get_model
 
 def read_everything():
 	df_responses = read_all_responses()
