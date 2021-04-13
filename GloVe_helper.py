@@ -26,12 +26,14 @@ class GloVeLoader:
 		for sentence in sentences:
 			vec = []
 			for w in nltk.word_tokenize(sentence)[:self.word_limit]:
-				print(w)
 				if w not in self.punctuation:
 					try:
 						vec.append(self.embeddings_dict[w.lower()])
 					except:
-						vec.append(np.zeros(50))
+						try:
+							vec.append(self.embeddings_dict[self.wordnet_lemmatizer.lemmatize(w.lower())])
+						except:
+							vec.append(np.zeros(50))
 			vec += [np.zeros(50) for _ in range(self.word_limit - len(vec))]
 			sample.append(vec)
 		sample = np.stack(sample)
@@ -42,4 +44,4 @@ class GloVeLoader:
 if __name__ == '__main__':
 	gl = GloVeLoader()
 	x = gl.pull_glove_embed(['hello how are you? ornfeorjgne', 'thank you! for telling me about the items I can buy here. good bye'])
-	print(x.shape)
+	print(x)
