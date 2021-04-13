@@ -12,10 +12,8 @@ def read_everything():
 	
 	assert len(list(df_responses.keys())) == len(list(df_patterns.keys())), "Patterns and Responses should have the same Tags"
 
-	intents = list(df_responses.keys())
-	patterns = df_responses.values()
-	responses = df_responses.values()
-	print(intents, patterns, responses)
+	xy = [[(tag, sentence) for sentence in sentences] for tag,sentences in df_patterns.items()]
+	print(xy)
 
 class ChatDataset(torch.utils.data.Dataset):
 	def __init__(self):
