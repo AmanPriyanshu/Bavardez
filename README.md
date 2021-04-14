@@ -11,7 +11,7 @@ Building a chatbot from scratch. The bot uses a Bag Of Word for encoding (no wor
 
 ### 2. GloVe Model:
 
-![demo_glove](/images/glove_model_example.PNG)
+![demo_glove](/images/glove_bot_example.PNG)
 
 ## Installation:
 Use the following command: 
