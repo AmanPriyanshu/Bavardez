@@ -1,7 +1,7 @@
 # Bavardez
 Building a chatbot from scratch. The bot uses a Bag Of Word for encoding (no word embeddings have been used yet). It uses a simple feed forward neural network to predict labels based on previously given texts. The ability of NLP to learn such simple tasks makes it one of the strongest tools in the field of Artificial/Machine Learning based Chatbots.
 
-![demo](sample_conversation.PNG)
+![demo](bavardez_example.PNG)
 
 ## Installation:
 Use the following command: 
