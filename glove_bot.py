@@ -31,11 +31,8 @@ def main():
 		if sentence == "quit":
 			break
 		embed = gl.pull_glove_embed([sentence])
-		print(embed.shape)
-		exit()
-		
 
-		output = model(bof)
+		output = model(embed)
 		probs = activation(output).flatten()
 		predicted_label = torch.argmax(probs)
 		tag = tags[predicted_label.item()]
