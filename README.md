@@ -3,6 +3,12 @@ Building a chatbot from scratch. The bot uses a Bag Of Word for encoding (no wor
 
 ![demo](bavardez_example.PNG)
 
+## Versions:
+
+### 1. Bag of Words Model:
+
+![demo_bag](/images/bof_model_example.PNG)
+
 ## Installation:
 Use the following command: 
 ```
