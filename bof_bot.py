@@ -25,7 +25,7 @@ def main():
 	df_responses = read_all_responses()
 	activation = torch.nn.Softmax(1)
 
-	print("Let's chat! Type \"quit\" to exit.")
+	print("Let's chat! (BOF Version) Type \"quit\" to exit.")
 	while True:
 		sentence = input("You:\t")
 		if sentence == "quit":

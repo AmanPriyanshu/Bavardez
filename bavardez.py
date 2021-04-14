@@ -10,5 +10,4 @@ if __name__ == '__main__':
 	if len(sys.argv)==1:
 		run_bot(DEFAULT)
 	else:
-		print(sys.argv, type(sys.argv))
-
+		run_bot(sys.argv[1][2:])

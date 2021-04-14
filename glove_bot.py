@@ -25,7 +25,7 @@ def main():
 	activation = torch.nn.Softmax(1)
 	gl = GloVeLoader()
 
-	print("Let's chat! Type \"quit\" to exit.")
+	print("Let's chat! (GloVe version) Type \"quit\" to exit.")
 	while True:
 		sentence = input("You:\t")
 		if sentence == "quit":
